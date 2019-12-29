@@ -1,11 +1,17 @@
 <template>
     <Page class="page">
-        <ActionBar class="action-bar bg-purple">
+        <ActionBar class="action-bar">
             <Label class="action-bar-title" text="Home"></Label>
         </ActionBar>
 
-        <StackLayout class="p-5">
-           <button class="btn btn-red btn-active btn-rounded-lg m-t-5" @tap="page2">Page 2</button>
+        <StackLayout class="p-5 bg-gray">
+            <StackLayout class="m-b-5" orientation="horizontal">
+                <Image class="" src="~/img/icon.jpg" stretch="none" />
+                <Label class="h2">Hi, My Name is Homer</Label>
+            </StackLayout>
+            <SearchBar class="bg-white" hint="Cari Contact" />
+           <button class="btn btn-red btn-active btn-rounded-lg m-t-5" @tap="page2">To Page 2</button>
+           <button class="btn btn-red btn-active btn-rounded-lg m-t-5" @tap="chat">To Chat Page</button>
             <!-- <StackLayout class="form border m-5 p-5">
 
                     <StackLayout class="input-field">
@@ -37,16 +43,36 @@
     // import {ScrollView} from "tns-core-modules/ui/scroll-view";
     // import * as notif from "nativescript-local-notifications";
     import Second from "./Second";
+    import Chat from "./Chat";
 
     export default {
         methods:{
             page2(){
                 let obj = {
-                    id: 1,
-                    msg:"This data from first page",
+                    data:[
+                        {        
+                            id: 1,
+                            msg:"First Data",
+                        },
+                        {        
+                            id: 2,
+                            msg:"Second Data",
+                        },
+                        {        
+                            id: 3,
+                            msg:"Third Data",
+                        },
+                    ]
                 }
                 
                 this.$navigateTo(Second,{props:obj});
+            },
+            chat(){
+                let obj = {
+                    name: "Homer"
+                }
+
+                this.$navigateTo(Chat,{props:obj})
             }
         },
         computed: {
@@ -61,11 +87,23 @@
     // Start custom common variables
     @import '../app-variables';
     // End custom common variables
-
+    
     // Custom styles
     .fa {
         color: $accent-dark;
     }
+
+    .bg-gray{
+        background-color:#e7dddd;
+    }
+
+    .bg-purple{
+		background-color:#8A2BE2;
+	}
+
+    .bg-white{
+		background-color:#ffffff;
+	}
 
     .info {
         font-size: 20;
